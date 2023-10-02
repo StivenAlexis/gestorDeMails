@@ -47,17 +47,14 @@ public class Contact{
     }
 
     
-    public boolean esCorreoValido(String correo) {
-        // Patrón de expresión regular para verificar un correo electrónico válido
-        String patronCorreo = "^[A-Za-z0-9+_.-]+@(.+)$";
+    public boolean isValidMail(String mail) {
+        
+        String patronMail = "^[A-Za-z0-9+_.-]+@(.+)$";
+        
+        Pattern pattern = Pattern.compile(patronMail);
+        
+        Matcher matcher = pattern.matcher(mail);
 
-        // Compilar el patrón
-        Pattern pattern = Pattern.compile(patronCorreo);
-
-        // Crear un objeto Matcher
-        Matcher matcher = pattern.matcher(correo);
-
-        // Verificar si el correo coincide con el patrón
         return matcher.matches();
     }
 

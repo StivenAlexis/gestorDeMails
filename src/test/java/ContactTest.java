@@ -24,7 +24,7 @@ public class ContactTest {
         Contact c1 = new Contact("Stiven22@gmail.com");
 
 
-        assertTrue(c1.esCorreoValido(c1.getEmailAddress()));
+        assertTrue(c1.isValidMail(c1.getEmailAddress()));
 
     }
 
@@ -34,7 +34,7 @@ public class ContactTest {
         
         Contact c1 = new Contact("Stiven22com");
 
-        assertFalse(c1.esCorreoValido(c1.getEmailAddress()));
+        assertFalse(c1.isValidMail(c1.getEmailAddress()));
 
     }
 
