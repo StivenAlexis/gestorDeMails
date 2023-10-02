@@ -1,6 +1,7 @@
 package gestor;
 
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Contact{
 
@@ -11,10 +12,14 @@ public class Contact{
 
 
     //function, procedure and contructors
-    public Contact (String name, String lastName, String email) {
+    public Contact (String name, String lastName, String emailAddress) {
         this.name = name;
         this.lastName = lastName;
-        this.emailAddress = email;
+        this.emailAddress = emailAddress;
+    }
+
+    public Contact ( String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public String getName() {
@@ -39,6 +44,21 @@ public class Contact{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    
+    public boolean esCorreoValido(String correo) {
+        // Patrón de expresión regular para verificar un correo electrónico válido
+        String patronCorreo = "^[A-Za-z0-9+_.-]+@(.+)$";
+
+        // Compilar el patrón
+        Pattern pattern = Pattern.compile(patronCorreo);
+
+        // Crear un objeto Matcher
+        Matcher matcher = pattern.matcher(correo);
+
+        // Verificar si el correo coincide con el patrón
+        return matcher.matches();
     }
 
 
