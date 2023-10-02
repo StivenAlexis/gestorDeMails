@@ -23,7 +23,6 @@ public class ContactTest {
 
         Contact c1 = new Contact("Stiven22@gmail.com");
 
-
         assertTrue(c1.isValidMail(c1.getEmailAddress()));
 
     }
@@ -31,7 +30,6 @@ public class ContactTest {
     @Test
     public void contactEmailInvalid(){
 
-        
         Contact c1 = new Contact("Stiven22com");
 
         assertFalse(c1.isValidMail(c1.getEmailAddress()));
