@@ -1,5 +1,6 @@
 package gestor;
 
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,13 +10,14 @@ public class Contact{
     private String name= "";
     private String emailAddress= "";  
     private String lastName = "";
-
+    
 
     //function, procedure and contructors
     public Contact (String name, String lastName, String emailAddress) {
         this.name = name;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
+        
     }
 
     public Contact ( String emailAddress) {
@@ -57,6 +59,8 @@ public class Contact{
 
         return matcher.matches();
     }
+
+
 
 
 
