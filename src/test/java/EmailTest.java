@@ -27,7 +27,7 @@ public class EmailTest {
         assertNotEquals(null,e1.sender);  
 
     }
-
+//EL buzon deberia recibir un cotacto.emailAddress
     
 
 
