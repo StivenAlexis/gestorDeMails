@@ -21,7 +21,7 @@ public class Manager {
 
 
     public ArrayList<MailBox> converter(Email email){
-        for (Contact contacto : email.to) {
+        for (Contact contacto : email.getTo()) {
         ToBox.add(new MailBox(contacto.getEmailAddress()));
         }
            

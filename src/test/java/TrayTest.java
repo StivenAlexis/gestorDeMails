@@ -17,8 +17,8 @@ public class TrayTest {
        Contact c2 = new Contact("stiven@gmail.com");
        Email e1 = new Email(c1,c2); 
        
-        e1.content= "asdasd";
-        e1.subject="sdsad ";
+        e1.setContent("asdasd");
+        e1.setSubject("sasd");
         
 
         assertTrue(t1.Inbox.add(e1));

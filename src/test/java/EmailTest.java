@@ -1,4 +1,5 @@
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
@@ -18,14 +19,14 @@ public class EmailTest {
         Contact c1 = new Contact("Juan", "martinez", "Stiven22@gmail.comn");
         Email e1 = new Email(remitente,c1);
         
-        e1.subject= "saludo";
-        e1.content = "hola";
+        e1.setSubject("saludo");
+        e1.setContent("hola");
         
 
-        assertNotEquals("",e1.subject);
-        assertNotEquals(0,e1.to.size());
-        assertNotEquals("",e1.content);
-        assertNotEquals(null,e1.sender);  
+        assertNotEquals("",e1.getSubject());
+        assertNotEquals(0,e1.getTo().size());
+        assertNotEquals("",e1.getContent());
+        assertNotEquals(null,e1.getSender());  
 
         
         
@@ -34,5 +35,25 @@ public class EmailTest {
 //EL buzon deberia recibir un cotacto.emailAddress
     
 
+     @Test
+    public void emailInvalidFrom(){
 
+        
+        
+        Contact c1 = new Contact("Juan", "martinez", "Stiven22@gmail.comn");
+        Email e1 = new Email(c1,c1);
+        
+        e1.setSubject("saludo");
+        e1.setContent("hola");
+        
+
+        assertNotEquals("",e1.getSubject());
+        assertNotEquals(0,e1.getTo().size());
+        assertNotEquals("",e1.getContent());
+        assertNotEquals(null,e1.getSender());  
+
+        
+        
+        
+    }
 }
