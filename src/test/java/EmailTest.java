@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import gestor.Contact;
 import gestor.Email;
-import gestor.MailBox;
+
 
 public class EmailTest {
     
@@ -27,7 +27,7 @@ public class EmailTest {
         assertNotEquals("",e1.content);
         assertNotEquals(null,e1.sender);  
 
-        MailBox m1 = new MailBox(c1.getEmailAddress());
+        
         
         
     }

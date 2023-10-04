@@ -12,8 +12,13 @@ public class Manager {
 
     public Manager(MailBox m1){
         senderBox= m1;
+
         
     }
+
+    
+
+
 
     public ArrayList<MailBox> converter(Email email){
         for (Contact contacto : email.to) {
@@ -24,15 +29,14 @@ public class Manager {
         
     }
     
-
     public void send(Email email){
        senderBox.trays.Outbox.add(email);
        for (MailBox mailbox : ToBox) {
         mailbox.trays.Inbox.add(email);
         }
-    
+     
     }
-       
+     
        
 
 
