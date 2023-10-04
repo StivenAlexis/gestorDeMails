@@ -2,15 +2,13 @@ package gestor;
 
 public class MailBox {
 
-public Contact emailAddress;
+public String emailAddress;
 public Tray trays;
   
 
-    public MailBox(Contact emailAddress){
+    public MailBox(String emailAddress){
 
         this.emailAddress=emailAddress;
-    
-
     }
     
 }

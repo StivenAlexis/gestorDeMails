@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import gestor.Contact;
@@ -11,18 +13,17 @@ public class TrayTest {
     public void FUnctionalTRayTest(){
 
        Tray t1 = new Tray(); 
-       Email e1 = new Email(); 
        Contact c1 = new Contact("stivenMO@gmail.com");
        Contact c2 = new Contact("stiven@gmail.com");
+       Email e1 = new Email(c1,c2); 
        
         e1.content= "asdasd";
         e1.subject="sdsad ";
-        e1.sender= c1;
-        e1.to.add(c2);
+        
 
-        t1.Inbox.add(e1);
+        assertTrue(t1.Inbox.add(e1));
 
-        assert
+        
 
     }
 
