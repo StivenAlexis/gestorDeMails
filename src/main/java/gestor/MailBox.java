@@ -10,5 +10,13 @@ public Tray trays = new Tray();
 
         this.emailAddress=emailAddress;
     }
-    
+    /* 
+    <groupId>com.javatechie</groupId>
+	<artifactId>gestorDeMail</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>gestorDeMails</name>
+	<url>http://maven.apache.org</url>
+    */
 }
