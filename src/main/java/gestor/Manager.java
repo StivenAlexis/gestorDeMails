@@ -6,19 +6,26 @@ import java.util.ArrayList;
 
 public class Manager {
     
-    public MailBox fromBox;
-    public ArrayList<MailBox> ToBox = new ArrayList<>();
+    private MailBox fromBox;
+    private ArrayList<MailBox> ToBox = new ArrayList<>();
 
-
-    public Manager(MailBox m1){
+        public Manager(MailBox m1){
         
-        setfromBox(m1);
+        setFromBox(m1);
         
     }
 
-    public ArrayList<MailBox> converter(Email email){
+    public ArrayList<MailBox> getToBox() {
+        return ToBox;
+    }
+
+    public void addToBox(MailBox mailbox) {
+        ToBox.add(mailbox);
+    }
+
+    public ArrayList<MailBox> createAndAddMailBoxes(Email email){
         for (Contact contacto : email.getTo()) {
-        ToBox.add(new MailBox(contacto.getEmailAddress()));
+        addToBox(new MailBox(contacto.getEmailAddress()));
         }
            
         return ToBox;
@@ -26,18 +33,18 @@ public class Manager {
     }
     
     public void send(Email email){
-       fromBox.trays.Outbox.add(email);
+       getFromBox().getTrays().addOutbox(email);
        for (MailBox mailbox : ToBox) {
-        mailbox.trays.Inbox.add(email);
+        mailbox.getTrays().addInbox(email);
         }
      
     }
      
-    public MailBox getfromBox() {
+    public MailBox getFromBox() {
         return fromBox;
     }
 
-    public void setfromBox(MailBox fromBox) {
+    public void setFromBox(MailBox fromBox) {
         if (fromBox==null) {
             throw new IllegalArgumentException("Este campo es obligatorio");
         }else{

@@ -1,4 +1,5 @@
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+
 
 import org.junit.Test;
 
@@ -19,9 +20,10 @@ public class TrayTest {
        
         e1.setContent("asdasd");
         e1.setSubject("sasd");
-        
+        t1.addInbox(e1);
+        t1.getInbox().get(0);
 
-        assertTrue(t1.Inbox.add(e1));
+        assertEquals(e1,t1.getInbox().get(0));
 
         
 
