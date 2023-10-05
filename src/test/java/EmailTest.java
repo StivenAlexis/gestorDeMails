@@ -29,7 +29,7 @@ public class EmailTest {
         assertNotEquals("",e1.getSubject());
         assertNotEquals(0,e1.getTo().size());
         assertNotEquals("",e1.getContent());
-        assertNotEquals(null,e1.getSender());  
+        assertNotEquals(null,e1.getFrom());  
 
         
     }

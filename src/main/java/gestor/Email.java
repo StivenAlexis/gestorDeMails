@@ -8,19 +8,16 @@ public class Email {
     private ArrayList<Contact> to = new ArrayList<>();
     
 
-    private Contact sender;
+    private Contact from;
     
     private String subject = "";
     private String content = "";
     
 
-    public Email(Contact sender, Contact FirstTo) {
-        if (sender == null || FirstTo == null) {
-            throw new IllegalArgumentException("Estos campos son obligatorios");
-        }
-        else{ this.setSender(sender);
-            addTo(FirstTo);
-        }
+    public Email(Contact from, Contact FirstTo) {
+        this.setFrom(from);
+        addTo(FirstTo);
+        
     }
 
      public ArrayList<Contact> getTo() {
@@ -28,15 +25,23 @@ public class Email {
     }
 
     public void addTo(Contact to) {
+        if (to == null) {
+            throw new IllegalArgumentException("Estos campos son obligatorios");
+        }else{
         this.to.add(to);
+       }
     }    
 
-    public Contact getSender() {
-        return sender;
+    public Contact getFrom() {
+        return from;
     }
 
-    public void setSender(Contact sender) {
-        this.sender = sender;
+    public void setFrom(Contact from) {
+        if (from == null ) {
+            throw new IllegalArgumentException("Estos campos son obligatorios");
+        }else{
+        this.from = from;
+        }
     }
 
     public String getSubject() {
