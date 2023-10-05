@@ -1,13 +1,17 @@
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
+import static org.junit.Assert.assertNotNull;
+
+
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import gestor.Contact;
 
 public class ContactTest {
     
+     @Rule
+    public ExpectedException exceptionRule = ExpectedException.none();
 
      @Test
     public void contactIfExists(){
@@ -21,18 +25,20 @@ public class ContactTest {
     @Test
     public void contactEmailValid(){
 
-        Contact c1 = new Contact("Stiven22@gmail.com");
-
-        assertTrue(c1.isValidMail(c1.getEmailAddress()));
-
+        new Contact("demo@ucp.com");
+        
+        
     }
 
     @Test
     public void contactEmailInvalid(){
 
-        Contact c1 = new Contact("Stiven22com");
+        exceptionRule.expect(IllegalArgumentException.class);
+        exceptionRule.expectMessage("El correo electrónico no es válido");
 
-        assertFalse(c1.isValidMail(c1.getEmailAddress()));
+        new Contact("Stiven22com");
+
+        
 
     }
 

@@ -1,6 +1,5 @@
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+
 
 import java.util.ArrayList;
 
@@ -10,8 +9,6 @@ import gestor.Contact;
 import gestor.Email;
 import gestor.MailBox;
 import gestor.Manager;
-import gestor.Tray;
-
 public class ManagerTest {
     
     @Test
@@ -26,7 +23,7 @@ public class ManagerTest {
         to.add(c2);
         e1.setSubject("saludo");
         e1.setContent("hola");
-        e1.setTo(c2);
+        e1.addTo(c2);
 
         MailBox ma1 = new MailBox(remitente.getEmailAddress());
 
@@ -41,9 +38,7 @@ public class ManagerTest {
         assertEquals("alejoEs@gmai.com",m1.ToBox.get(0).emailAddress);
         assertEquals("YanilethFon@gmail.com",m1.ToBox.get(1).emailAddress);
         assertEquals(1,m1.ToBox.get(0).trays.Inbox.size());
-        
-        
-
+    
     
     }
 }

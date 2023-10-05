@@ -16,17 +16,18 @@ public class Email {
 
     public Email(Contact sender, Contact FirstTo) {
         if (sender == null || FirstTo == null) {
-            throw new IllegalArgumentException("Los argumentos 'sender' y 'FirstTo' no pueden ser nulos.");
+            throw new IllegalArgumentException("Estos campos son obligatorios");
         }
-        this.sender = sender;
-        to.add(FirstTo);
+        else{ this.setSender(sender);
+            addTo(FirstTo);
+        }
     }
 
      public ArrayList<Contact> getTo() {
         return to;
     }
 
-    public void setTo(Contact to) {
+    public void addTo(Contact to) {
         this.to.add(to);
     }    
 

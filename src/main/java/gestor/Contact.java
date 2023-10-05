@@ -1,8 +1,6 @@
 package gestor;
 
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Contact{
 
@@ -14,14 +12,13 @@ public class Contact{
 
     //function, procedure and contructors
     public Contact (String name, String lastName, String emailAddress) {
-        this.name = name;
-        this.lastName = lastName;
-        this.emailAddress = emailAddress;
-        
+        this.setName(name);
+        this.setLastName(lastName);
+        this.setEmailAddress(emailAddress);
     }
 
     public Contact ( String emailAddress) {
-        this.emailAddress = emailAddress;
+        this.setEmailAddress(emailAddress);
     }
 
     public String getName() {
@@ -37,8 +34,13 @@ public class Contact{
     }
 
     public void setEmailAddress(String emailAddress) {
+        if (!isValidMail(emailAddress)) {
+            throw new IllegalArgumentException("El correo electrónico no es válido");
+        }
+        // Establecer el correo electrónico solo si es válido
         this.emailAddress = emailAddress;
     }
+    
 
      public String getLastName() {
         return lastName;
@@ -51,14 +53,11 @@ public class Contact{
     
     public boolean isValidMail(String mail) {
         
-        String patronMail = "^[A-Za-z0-9+_.-]+@(.+)$";
         
-        Pattern pattern = Pattern.compile(patronMail);
-        
-        Matcher matcher = pattern.matcher(mail);
-
-        return matcher.matches();
+        return mail.contains("@") && mail.contains(".");
+    
     }
+
 
 
 
