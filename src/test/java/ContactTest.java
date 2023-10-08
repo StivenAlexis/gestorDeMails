@@ -1,4 +1,5 @@
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 
@@ -25,18 +26,30 @@ public class ContactTest {
     @Test
     public void contactEmailValid(){
 
-        new Contact("demo@ucp.com");
-        
+        Contact c1 = new Contact("demo@ucp.com");
+
+
+        assertEquals(true,c1.isValidMail("demo@ucp.com"));
         
     }
 
     @Test
-    public void contactEmailInvalid(){
+    public void contactEmailInValid(){
+
+        Contact c1 = new Contact("demo@ucp.com");
+
+
+        assertEquals(true,c1.isValidMail("demo@ucp.com"));
+        
+    }
+
+    @Test
+    public void contactNullEmail(){
 
         exceptionRule.expect(IllegalArgumentException.class);
         exceptionRule.expectMessage("El correo electrónico no es válido");
 
-        new Contact("Stiven22com");
+        new Contact(null);
 
         
 

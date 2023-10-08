@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Rule;

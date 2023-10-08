@@ -25,9 +25,11 @@ public class Manager {
 
     public ArrayList<MailBox> createAndAddMailBoxes(Email email){
         for (Contact contacto : email.getTo()) {
-        addToBox(new MailBox(contacto.getEmailAddress()));
+  
+            addToBox(new MailBox(contacto.getEmailAddress())); 
+        
         }
-           
+
         return ToBox;
         
     }
@@ -50,9 +52,20 @@ public class Manager {
         }else{
         this.fromBox = fromBox;
         }
+    
     }
 
-       
+    /* 
+    public boolean exists(String emailAddress) {
+        for (MailBox mailBox : ToBox) {
+            if (mailBox.getEmailAddress().equals(emailAddress)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+       */
 
 
 

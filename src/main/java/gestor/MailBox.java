@@ -1,7 +1,5 @@
 package gestor;
 
-
-
 public class MailBox {
 
 private String emailAddress;
@@ -20,7 +18,12 @@ private Tray trays = new Tray();
 
 
     public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+        
+            if (emailAddress==null) {
+                throw new IllegalArgumentException("Este campo es obligatorio");
+            }else{
+            this.emailAddress = emailAddress;
+            }
     }
 
 

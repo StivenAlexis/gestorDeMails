@@ -7,7 +7,6 @@ public class Email {
 
     private ArrayList<Contact> to = new ArrayList<>();
     
-
     private Contact from;
     
     private String subject = "";

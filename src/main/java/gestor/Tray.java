@@ -11,6 +11,7 @@ public class Tray {
     public ArrayList<Email> getInbox() {
         return Inbox;
     }
+    
     public void addInbox(Email email) {
         Inbox.add(email);
     }

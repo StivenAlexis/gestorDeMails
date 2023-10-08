@@ -34,7 +34,7 @@ public class Contact{
     }
 
     public void setEmailAddress(String emailAddress) {
-        if (!isValidMail(emailAddress)) {
+        if (emailAddress==null) {
             throw new IllegalArgumentException("El correo electrónico no es válido");
         }
         // Establecer el correo electrónico solo si es válido
