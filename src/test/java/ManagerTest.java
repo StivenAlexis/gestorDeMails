@@ -65,6 +65,7 @@ public class ManagerTest {
         e1.setSubject("saludo");
         e1.setContent("hola");
         e1.addTo(c3);
+
         e2.setSubject("importante");
         e2.setContent("alerta");
         e2.addTo(c1);
@@ -82,12 +83,14 @@ public class ManagerTest {
 
         m1.sort(e1);
         m1.send(e1);
+        
+        //corroboramos que el email esta cada bandeja
 
-        assertEquals(e1,m1.getFromBox().getTrays().getOutbox().get(0));
+        assertEquals(e1,ma1.getTrays().getOutbox().get(0));
 
-        assertEquals(e1,m1.getToBox().get(0).getTrays().getInbox().get(0));
+        assertEquals(e1,ma2.getTrays().getInbox().get(0));
 
-        assertEquals(e1,m1.getToBox().get(1).getTrays().getInbox().get(0));
+        assertEquals(e1,ma3.getTrays().getInbox().get(0));
 
         m1.sort(e2);
         m1.send(e2);
@@ -95,14 +98,11 @@ public class ManagerTest {
 
         //corroboramos que el email esta cada bandeja 
         
-        assertEquals(e2,m1.getFromBox().getTrays().getOutbox().get(0));
+        assertEquals(e2,ma2.getTrays().getOutbox().get(0));
 
-        assertEquals(e2,m1.getToBox().get(0).getTrays().getInbox().get(1));
+        assertEquals(e2,ma1.getTrays().getInbox().get(0));
 
-        assertEquals(e2,m1.getToBox().get(1).getTrays().getInbox().get(0));
-        
-        
-    
+        assertEquals(e2,ma3.getTrays().getInbox().get(1));
     
     }
 

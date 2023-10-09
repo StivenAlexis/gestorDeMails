@@ -27,13 +27,35 @@ List<Email> emails = new ArrayList<>();
     public static Predicate<Email> FindASender(String sender) {
         return email -> email.getFrom().getEmailAddress().equals(sender);
     }
-
+  
     public static Predicate<Email> FindAAddresse(String addressee) {
-        return email -> email.getTo().iterator().next().getEmailAddress().equals(addressee);
+        return email -> email.getTo().stream().anyMatch(contact -> contact.getEmailAddress().equals(addressee));
     }
 
 
- 
+    public static Predicate<Email> FindASenderWhithASubject(String sender,String subject) {
+        Predicate<Email> senderPredicate = FindASender(sender);
+        Predicate<Email> subjectPredicate = SearchTheSubject(subject);
+
+        return senderPredicate.and(subjectPredicate);
+    }
+
+    public static Predicate<Email> FindASenderWhithASubjectAndContent(String sender, String subject,String content) {
+        Predicate<Email> senderPredicate = FindASender(sender);
+        Predicate<Email> subjectPredicate = SearchTheSubject(subject);
+        Predicate<Email> contentPredicate = SearchTheContent(content);
+
+        return senderPredicate.and(subjectPredicate).and(contentPredicate);
+    }
+
+    public static Predicate<Email> FindAAddresseeWhithASubject(String addressee,String subject) {
+        Predicate<Email> addresseePredicate = FindAAddresse(addressee);
+        Predicate<Email> subjectPredicate = SearchTheSubject(subject);
+
+        return addresseePredicate.and(subjectPredicate);
+    }
+
+    /*git commit -m "se cambio createAndMailBox por sort la cual ahora no crea nada si no que orden en base a un email sus variables internas para poder enviar varios emails, ahora hay que creae un mailbox manualmente por cada contacto. se creo la clase filter con sus respectivos predicados, se creo el test de filter y todo lo demas esta listo " */
 }
 
 

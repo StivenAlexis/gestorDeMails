@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Manager {
     
     private MailBox fromBox;
-    private ArrayList<MailBox> ToBox = new ArrayList<>();
+    private ArrayList<MailBox> toBox = new ArrayList<>();
     
 
     private ArrayList<MailBox> Boxes = new ArrayList<>();
@@ -21,15 +21,15 @@ public class Manager {
 
     public ArrayList<MailBox> getToBox() {
     
-        return ToBox;
+        return toBox;
     }
-    
+
     public void setToBox(ArrayList<MailBox> toBox) {
-        ToBox = toBox;
+        this.toBox = toBox;
     }
 
     public void addToBox(MailBox mailbox) {
-        ToBox.add(mailbox);
+        this.toBox.add(mailbox);
     }
 
     public ArrayList<MailBox> sort(Email email) {
@@ -53,18 +53,18 @@ public class Manager {
                     }
                 }
             }
-            ToBox.clear();
-            ToBox.addAll(temporalList);
+            toBox.clear();
+            toBox.addAll(temporalList);
 
 
-        return getToBox();
+        return toBox;
     }
 
 
     
     public void send(Email email){
        getFromBox().getTrays().addOutbox(email);
-       for (MailBox mailbox : ToBox) {
+       for (MailBox mailbox : toBox) {
         mailbox.getTrays().addInbox(email);
         }
      
