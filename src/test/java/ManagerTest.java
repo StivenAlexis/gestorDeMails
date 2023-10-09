@@ -1,6 +1,8 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -27,8 +29,13 @@ public class ManagerTest {
         e1.setContent("hola");
 
         MailBox ma1 = new MailBox(remitente.getEmailAddress());
+        MailBox ma2 = new MailBox(c1.getEmailAddress());
 
-        Manager m1= new Manager(ma1);
+        ArrayList<MailBox> mailBoxes = new ArrayList<MailBox>();
+        mailBoxes.add(ma1);
+        mailBoxes.add(ma2);
+
+        Manager m1= new Manager(mailBoxes);
 
         assertNotNull(m1);
       
@@ -49,7 +56,61 @@ public class ManagerTest {
     @Test
     public void ManagerSendTest(){
          
-        Contact remitente = new Contact("Juan", "martinez", "Stiven22@gmail.comn");
+        Contact c1 = new Contact("Stiven22@gmail.com");
+        Contact c2 = new Contact("alejoEs@gmai.com");
+        Contact c3 = new Contact("YanilethFon@gmail.com");
+        Email e1 = new Email(c1,c2);
+        Email e2 = new Email(c2,c3);
+
+        e1.setSubject("saludo");
+        e1.setContent("hola");
+        e1.addTo(c3);
+        e2.setSubject("importante");
+        e2.setContent("alerta");
+        e2.addTo(c1);
+        
+        MailBox ma1 = new MailBox(c1.getEmailAddress());
+        MailBox ma2 = new MailBox(c2.getEmailAddress());
+        MailBox ma3 = new MailBox(c3.getEmailAddress());
+
+        ArrayList<MailBox> mailBoxes = new ArrayList<MailBox>();
+        mailBoxes.add(ma3);
+        mailBoxes.add(ma1);
+        mailBoxes.add(ma2);
+
+        Manager m1= new Manager(mailBoxes);
+
+        m1.sort(e1);
+        m1.send(e1);
+
+        assertEquals(e1,m1.getFromBox().getTrays().getOutbox().get(0));
+
+        assertEquals(e1,m1.getToBox().get(0).getTrays().getInbox().get(0));
+
+        assertEquals(e1,m1.getToBox().get(1).getTrays().getInbox().get(0));
+
+        m1.sort(e2);
+        m1.send(e2);
+        
+
+        //corroboramos que el email esta cada bandeja 
+        
+        assertEquals(e2,m1.getFromBox().getTrays().getOutbox().get(0));
+
+        assertEquals(e2,m1.getToBox().get(0).getTrays().getInbox().get(1));
+
+        assertEquals(e2,m1.getToBox().get(1).getTrays().getInbox().get(0));
+        
+        
+    
+    
+    }
+
+
+    @Test
+    public void sortTest(){
+         
+        Contact remitente = new Contact("Juan", "martinez", "Stiven22@gmail.com");
         Contact c1 = new Contact("Alejo", "Espinoza", "alejoEs@gmai.com");
         Contact c2 = new Contact("Yanileth", "Fontalvo", "YanilethFon@gmail.com");
         Email e1 = new Email(remitente,c1);
@@ -62,48 +123,22 @@ public class ManagerTest {
         MailBox ma2 = new MailBox(c1.getEmailAddress());
         MailBox ma3 = new MailBox(c2.getEmailAddress());
 
-        Manager m1= new Manager(ma1);
+        ArrayList<MailBox> mailBoxes = new ArrayList<MailBox>();
+        mailBoxes.add(ma1);
+        mailBoxes.add(ma2);
+        mailBoxes.add(ma3);
 
-        m1.addToBox(ma2);
-        m1.addToBox(ma3);
-        m1.send(e1);
+        Manager m1= new Manager(mailBoxes);
 
-        //corroboramos que el email esta cada bandeja 
-        assertEquals(e1,m1.getFromBox().getTrays().getOutbox().get(0));
-
-        assertEquals(e1,m1.getToBox().get(0).getTrays().getInbox().get(0));
-
-        assertEquals(e1,m1.getToBox().get(1).getTrays().getInbox().get(0));
+        m1.sort(e1);
         
-        
-    
-    
-    }
-
-
-    @Test
-    public void ManagercreateAndAddMailBoxes(){
-         
-        Contact remitente = new Contact("Juan", "martinez", "Stiven22@gmail.com");
-        Contact c1 = new Contact("Alejo", "Espinoza", "alejoEs@gmai.com");
-        Contact c2 = new Contact("Yanileth", "Fontalvo", "YanilethFon@gmail.com");
-        Email e1 = new Email(remitente,c1);
-     
-        e1.setSubject("saludo");
-        e1.setContent("hola");
-        e1.addTo(c2);
-
-        MailBox ma1 = new MailBox(remitente.getEmailAddress());
-        Manager m1= new Manager(ma1);
-
-        m1.createAndAddMailBoxes(e1);
 
         //corroboramos que cada mailBox se creo con el email asociado correcto
-         assertEquals("Stiven22@gmail.com",m1.getFromBox().getEmailAddress());
+        assertEquals("Stiven22@gmail.com",m1.getFromBox().getEmailAddress());
 
         assertEquals("alejoEs@gmai.com",m1.getToBox().get(0).getEmailAddress());
 
-        //assertEquals("YanilethFon@gmail.com",m1.getToBox().get(1).getEmailAddress());
+        assertEquals("YanilethFon@gmail.com",m1.getToBox().get(1).getEmailAddress());
 
         
         

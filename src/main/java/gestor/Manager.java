@@ -8,31 +8,59 @@ public class Manager {
     
     private MailBox fromBox;
     private ArrayList<MailBox> ToBox = new ArrayList<>();
+    
 
-        public Manager(MailBox m1){
+    private ArrayList<MailBox> Boxes = new ArrayList<>();
+
         
-        setFromBox(m1);
+    public Manager(ArrayList<MailBox> mailBoxes){
+            
+        setBoxes(mailBoxes);
         
     }
 
     public ArrayList<MailBox> getToBox() {
+    
         return ToBox;
+    }
+    
+    public void setToBox(ArrayList<MailBox> toBox) {
+        ToBox = toBox;
     }
 
     public void addToBox(MailBox mailbox) {
         ToBox.add(mailbox);
     }
 
-    public ArrayList<MailBox> createAndAddMailBoxes(Email email){
-        for (Contact contacto : email.getTo()) {
-  
-            addToBox(new MailBox(contacto.getEmailAddress())); 
+    public ArrayList<MailBox> sort(Email email) {
+        ArrayList<MailBox> temporalList = new ArrayList<>();
         
-        }
+            // Verificar si un MailBox con la misma dirección de correo electrónico ya existe en ToBox
+            for (MailBox mailbox : Boxes) {
+                if (mailbox.getEmailAddress().equals(email.getFrom().getEmailAddress())) {
+                    setFromBox(mailbox);
+                }
+            }
 
-        return ToBox;
-        
+            for (Contact contacto : email.getTo()) {
+            String emailAddress = contacto.getEmailAddress();
+
+                for (MailBox mailbox : Boxes) {
+                    if (mailbox.getEmailAddress().equals(emailAddress)) {
+                    
+                    temporalList.add(mailbox);
+
+                    }
+                }
+            }
+            ToBox.clear();
+            ToBox.addAll(temporalList);
+
+
+        return getToBox();
     }
+
+
     
     public void send(Email email){
        getFromBox().getTrays().addOutbox(email);
@@ -47,26 +75,28 @@ public class Manager {
     }
 
     public void setFromBox(MailBox fromBox) {
-        if (fromBox==null) {
-            throw new IllegalArgumentException("Este campo es obligatorio");
-        }else{
+        
         this.fromBox = fromBox;
         }
     
+    
+
+    public ArrayList<MailBox> getBoxes() {
+        return Boxes;
     }
 
-    /* 
-    public boolean exists(String emailAddress) {
-        for (MailBox mailBox : ToBox) {
-            if (mailBox.getEmailAddress().equals(emailAddress)) {
-                return true;
-            }
+    public void setBoxes(ArrayList<MailBox> boxes) {
+        if (boxes==null) {
+            throw new IllegalArgumentException("Este campo es obligatorio");
+        }else{
+        Boxes = boxes;
         }
-
-        return false;
     }
-       */
 
 
 
 }
+  
+
+
+
