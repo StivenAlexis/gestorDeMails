@@ -247,8 +247,6 @@ public class FilterTest {
         List<Email> filteredEmails = Filter.filterEmails(ma1.getTrays().getInbox() , Filter.FindAAddresseeWhithASubject("Stiven22@ucp.com","Impor"));
 
         assertEquals(1,filteredEmails.size());
-    
-    
     }
     
 }

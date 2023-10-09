@@ -55,8 +55,7 @@ List<Email> emails = new ArrayList<>();
         return addresseePredicate.and(subjectPredicate);
     }
 
-    /*git commit -m "se cambio createAndMailBox por sort la cual ahora no crea nada si no que orden en base a un email sus variables internas para poder enviar varios emails, ahora hay que creae un mailbox manualmente por cada contacto. se creo la clase filter con sus respectivos predicados, se creo el test de filter y todo lo demas esta listo " */
-}
+}    
 
 
     
