@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 public class Filter {
 
-List<Email> emails = new ArrayList<>();
 
    public static List<Email> filterEmails(ArrayList<Email> emails, Predicate<Email> filter) {
         return emails.stream()

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Manager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">gestorDeMails</a> &gt; <a href="index.source.html" class="el_package">gestor</a> &gt; <span class="el_source">Manager.java</span></div><h1>Manager.java</h1><pre class="source lang-java linenums">package gestor;
+
+import java.util.ArrayList;
+
+
+
+public class Manager {
+    
+    private MailBox fromBox;
+<span class="fc" id="L10">    private ArrayList&lt;MailBox&gt; toBox = new ArrayList&lt;&gt;();</span>
+    
+
+<span class="fc" id="L13">    private ArrayList&lt;MailBox&gt; Boxes = new ArrayList&lt;&gt;();</span>
+
+        
+<span class="fc" id="L16">    public Manager(ArrayList&lt;MailBox&gt; mailBoxes){</span>
+            
+<span class="fc" id="L18">        setBoxes(mailBoxes);</span>
+        
+<span class="fc" id="L20">    }</span>
+
+    public ArrayList&lt;MailBox&gt; getToBox() {
+    
+<span class="fc" id="L24">        return toBox;</span>
+    }
+
+    public void setToBox(ArrayList&lt;MailBox&gt; toBox) {
+<span class="nc" id="L28">        this.toBox = toBox;</span>
+<span class="nc" id="L29">    }</span>
+
+    public void addToBox(MailBox mailbox) {
+<span class="nc" id="L32">        this.toBox.add(mailbox);</span>
+<span class="nc" id="L33">    }</span>
+
+    public ArrayList&lt;MailBox&gt; sort(Email email) {
+<span class="fc" id="L36">        ArrayList&lt;MailBox&gt; temporalList = new ArrayList&lt;&gt;();</span>
+        
+            // Verificar si un MailBox con la misma dirección de correo electrónico ya existe en ToBox
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            for (MailBox mailbox : Boxes) {</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">                if (mailbox.getEmailAddress().equals(email.getFrom().getEmailAddress())) {</span>
+<span class="fc" id="L41">                    setFromBox(mailbox);</span>
+                }
+<span class="fc" id="L43">            }</span>
+
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            for (Contact contacto : email.getTo()) {</span>
+<span class="fc" id="L46">            String emailAddress = contacto.getEmailAddress();</span>
+
+<span class="fc bfc" id="L48" title="All 2 branches covered.">                for (MailBox mailbox : Boxes) {</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">                    if (mailbox.getEmailAddress().equals(emailAddress)) {</span>
+                    
+<span class="fc" id="L51">                    temporalList.add(mailbox);</span>
+
+                    }
+<span class="fc" id="L54">                }</span>
+<span class="fc" id="L55">            }</span>
+<span class="fc" id="L56">            toBox.clear();</span>
+<span class="fc" id="L57">            toBox.addAll(temporalList);</span>
+
+
+<span class="fc" id="L60">        return toBox;</span>
+    }
+
+
+    
+    public void send(Email email){
+<span class="fc" id="L66">       getFromBox().getTrays().addOutbox(email);</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">       for (MailBox mailbox : toBox) {</span>
+<span class="fc" id="L68">        mailbox.getTrays().addInbox(email);</span>
+<span class="fc" id="L69">        }</span>
+     
+<span class="fc" id="L71">    }</span>
+     
+    public MailBox getFromBox() {
+<span class="fc" id="L74">        return fromBox;</span>
+    }
+
+    public void setFromBox(MailBox fromBox) {
+        
+<span class="fc" id="L79">        this.fromBox = fromBox;</span>
+<span class="fc" id="L80">        }</span>
+    
+    
+
+    public ArrayList&lt;MailBox&gt; getBoxes() {
+<span class="nc" id="L85">        return Boxes;</span>
+    }
+
+    public void setBoxes(ArrayList&lt;MailBox&gt; boxes) {
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if (boxes==null) {</span>
+<span class="fc" id="L90">            throw new IllegalArgumentException(&quot;Este campo es obligatorio&quot;);</span>
+        }else{
+<span class="fc" id="L92">        Boxes = boxes;</span>
+        }
+<span class="fc" id="L94">    }</span>
+
+
+
+}
+  
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

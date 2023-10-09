@@ -8,9 +8,7 @@ public class Manager {
     
     private MailBox fromBox;
     private ArrayList<MailBox> toBox = new ArrayList<>();
-    
-
-    private ArrayList<MailBox> Boxes = new ArrayList<>();
+    private ArrayList<MailBox> boxes = new ArrayList<>();
 
         
     public Manager(ArrayList<MailBox> mailBoxes){
@@ -36,7 +34,7 @@ public class Manager {
         ArrayList<MailBox> temporalList = new ArrayList<>();
         
             // Verificar si un MailBox con la misma dirección de correo electrónico ya existe en ToBox
-            for (MailBox mailbox : Boxes) {
+            for (MailBox mailbox : boxes) {
                 if (mailbox.getEmailAddress().equals(email.getFrom().getEmailAddress())) {
                     setFromBox(mailbox);
                 }
@@ -45,7 +43,7 @@ public class Manager {
             for (Contact contacto : email.getTo()) {
             String emailAddress = contacto.getEmailAddress();
 
-                for (MailBox mailbox : Boxes) {
+                for (MailBox mailbox : boxes) {
                     if (mailbox.getEmailAddress().equals(emailAddress)) {
                     
                     temporalList.add(mailbox);
@@ -82,14 +80,14 @@ public class Manager {
     
 
     public ArrayList<MailBox> getBoxes() {
-        return Boxes;
+        return boxes;
     }
 
     public void setBoxes(ArrayList<MailBox> boxes) {
         if (boxes==null) {
             throw new IllegalArgumentException("Este campo es obligatorio");
         }else{
-        Boxes = boxes;
+        this.boxes = boxes;
         }
     }
 
