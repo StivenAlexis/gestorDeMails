@@ -7,52 +7,51 @@ import java.util.stream.Collectors;
 
 <span class="nc" id="L8">public class Filter {</span>
 
-<span class="nc" id="L10">List&lt;Email&gt; emails = new ArrayList&lt;&gt;();</span>
 
    public static List&lt;Email&gt; filterEmails(ArrayList&lt;Email&gt; emails, Predicate&lt;Email&gt; filter) {
-<span class="fc" id="L13">        return emails.stream()</span>
-<span class="fc" id="L14">            .filter(filter)</span>
-<span class="fc" id="L15">            .collect(Collectors.toList());</span>
+<span class="fc" id="L12">        return emails.stream()</span>
+<span class="fc" id="L13">            .filter(filter)</span>
+<span class="fc" id="L14">            .collect(Collectors.toList());</span>
     }
 
     // Example filter methods
     public static Predicate&lt;Email&gt; SearchTheSubject(String subject) {
-<span class="fc" id="L20">        return email -&gt; email.getSubject().contains(subject);</span>
+<span class="fc" id="L19">        return email -&gt; email.getSubject().contains(subject);</span>
     }
 
     public static Predicate&lt;Email&gt; SearchTheContent(String content) {
-<span class="fc" id="L24">        return email -&gt; email.getContent().contains(content);</span>
+<span class="fc" id="L23">        return email -&gt; email.getContent().contains(content);</span>
     }
 
     public static Predicate&lt;Email&gt; FindASender(String sender) {
-<span class="fc" id="L28">        return email -&gt; email.getFrom().getEmailAddress().equals(sender);</span>
+<span class="fc" id="L27">        return email -&gt; email.getFrom().getEmailAddress().equals(sender);</span>
     }
   
     public static Predicate&lt;Email&gt; FindAAddresse(String addressee) {
-<span class="fc" id="L32">        return email -&gt; email.getTo().stream().anyMatch(contact -&gt; contact.getEmailAddress().equals(addressee));</span>
+<span class="fc" id="L31">        return email -&gt; email.getTo().stream().anyMatch(contact -&gt; contact.getEmailAddress().equals(addressee));</span>
     }
 
 
     public static Predicate&lt;Email&gt; FindASenderWhithASubject(String sender,String subject) {
-<span class="fc" id="L37">        Predicate&lt;Email&gt; senderPredicate = FindASender(sender);</span>
-<span class="fc" id="L38">        Predicate&lt;Email&gt; subjectPredicate = SearchTheSubject(subject);</span>
+<span class="fc" id="L36">        Predicate&lt;Email&gt; senderPredicate = FindASender(sender);</span>
+<span class="fc" id="L37">        Predicate&lt;Email&gt; subjectPredicate = SearchTheSubject(subject);</span>
 
-<span class="fc" id="L40">        return senderPredicate.and(subjectPredicate);</span>
+<span class="fc" id="L39">        return senderPredicate.and(subjectPredicate);</span>
     }
 
     public static Predicate&lt;Email&gt; FindASenderWhithASubjectAndContent(String sender, String subject,String content) {
-<span class="fc" id="L44">        Predicate&lt;Email&gt; senderPredicate = FindASender(sender);</span>
-<span class="fc" id="L45">        Predicate&lt;Email&gt; subjectPredicate = SearchTheSubject(subject);</span>
-<span class="fc" id="L46">        Predicate&lt;Email&gt; contentPredicate = SearchTheContent(content);</span>
+<span class="fc" id="L43">        Predicate&lt;Email&gt; senderPredicate = FindASender(sender);</span>
+<span class="fc" id="L44">        Predicate&lt;Email&gt; subjectPredicate = SearchTheSubject(subject);</span>
+<span class="fc" id="L45">        Predicate&lt;Email&gt; contentPredicate = SearchTheContent(content);</span>
 
-<span class="fc" id="L48">        return senderPredicate.and(subjectPredicate).and(contentPredicate);</span>
+<span class="fc" id="L47">        return senderPredicate.and(subjectPredicate).and(contentPredicate);</span>
     }
 
     public static Predicate&lt;Email&gt; FindAAddresseeWhithASubject(String addressee,String subject) {
-<span class="fc" id="L52">        Predicate&lt;Email&gt; addresseePredicate = FindAAddresse(addressee);</span>
-<span class="fc" id="L53">        Predicate&lt;Email&gt; subjectPredicate = SearchTheSubject(subject);</span>
+<span class="fc" id="L51">        Predicate&lt;Email&gt; addresseePredicate = FindAAddresse(addressee);</span>
+<span class="fc" id="L52">        Predicate&lt;Email&gt; subjectPredicate = SearchTheSubject(subject);</span>
 
-<span class="fc" id="L55">        return addresseePredicate.and(subjectPredicate);</span>
+<span class="fc" id="L54">        return addresseePredicate.and(subjectPredicate);</span>
     }
 
 }    

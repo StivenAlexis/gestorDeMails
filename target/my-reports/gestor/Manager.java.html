@@ -8,90 +8,88 @@ public class Manager {
     
     private MailBox fromBox;
 <span class="fc" id="L10">    private ArrayList&lt;MailBox&gt; toBox = new ArrayList&lt;&gt;();</span>
-    
-
-<span class="fc" id="L13">    private ArrayList&lt;MailBox&gt; Boxes = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L11">    private ArrayList&lt;MailBox&gt; boxes = new ArrayList&lt;&gt;();</span>
 
         
-<span class="fc" id="L16">    public Manager(ArrayList&lt;MailBox&gt; mailBoxes){</span>
+<span class="fc" id="L14">    public Manager(ArrayList&lt;MailBox&gt; mailBoxes){</span>
             
-<span class="fc" id="L18">        setBoxes(mailBoxes);</span>
+<span class="fc" id="L16">        setBoxes(mailBoxes);</span>
         
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L18">    }</span>
 
     public ArrayList&lt;MailBox&gt; getToBox() {
     
-<span class="fc" id="L24">        return toBox;</span>
+<span class="fc" id="L22">        return toBox;</span>
     }
 
     public void setToBox(ArrayList&lt;MailBox&gt; toBox) {
-<span class="nc" id="L28">        this.toBox = toBox;</span>
-<span class="nc" id="L29">    }</span>
+<span class="nc" id="L26">        this.toBox = toBox;</span>
+<span class="nc" id="L27">    }</span>
 
     public void addToBox(MailBox mailbox) {
-<span class="nc" id="L32">        this.toBox.add(mailbox);</span>
-<span class="nc" id="L33">    }</span>
+<span class="nc" id="L30">        this.toBox.add(mailbox);</span>
+<span class="nc" id="L31">    }</span>
 
     public ArrayList&lt;MailBox&gt; sort(Email email) {
-<span class="fc" id="L36">        ArrayList&lt;MailBox&gt; temporalList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L34">        ArrayList&lt;MailBox&gt; temporalList = new ArrayList&lt;&gt;();</span>
         
             // Verificar si un MailBox con la misma dirección de correo electrónico ya existe en ToBox
-<span class="fc bfc" id="L39" title="All 2 branches covered.">            for (MailBox mailbox : Boxes) {</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">                if (mailbox.getEmailAddress().equals(email.getFrom().getEmailAddress())) {</span>
-<span class="fc" id="L41">                    setFromBox(mailbox);</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            for (MailBox mailbox : boxes) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">                if (mailbox.getEmailAddress().equals(email.getFrom().getEmailAddress())) {</span>
+<span class="fc" id="L39">                    setFromBox(mailbox);</span>
                 }
-<span class="fc" id="L43">            }</span>
+<span class="fc" id="L41">            }</span>
 
-<span class="fc bfc" id="L45" title="All 2 branches covered.">            for (Contact contacto : email.getTo()) {</span>
-<span class="fc" id="L46">            String emailAddress = contacto.getEmailAddress();</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            for (Contact contacto : email.getTo()) {</span>
+<span class="fc" id="L44">            String emailAddress = contacto.getEmailAddress();</span>
 
-<span class="fc bfc" id="L48" title="All 2 branches covered.">                for (MailBox mailbox : Boxes) {</span>
-<span class="fc bfc" id="L49" title="All 2 branches covered.">                    if (mailbox.getEmailAddress().equals(emailAddress)) {</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">                for (MailBox mailbox : boxes) {</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">                    if (mailbox.getEmailAddress().equals(emailAddress)) {</span>
                     
-<span class="fc" id="L51">                    temporalList.add(mailbox);</span>
+<span class="fc" id="L49">                    temporalList.add(mailbox);</span>
 
                     }
-<span class="fc" id="L54">                }</span>
-<span class="fc" id="L55">            }</span>
-<span class="fc" id="L56">            toBox.clear();</span>
-<span class="fc" id="L57">            toBox.addAll(temporalList);</span>
+<span class="fc" id="L52">                }</span>
+<span class="fc" id="L53">            }</span>
+<span class="fc" id="L54">            toBox.clear();</span>
+<span class="fc" id="L55">            toBox.addAll(temporalList);</span>
 
 
-<span class="fc" id="L60">        return toBox;</span>
+<span class="fc" id="L58">        return toBox;</span>
     }
 
 
     
     public void send(Email email){
-<span class="fc" id="L66">       getFromBox().getTrays().addOutbox(email);</span>
-<span class="fc bfc" id="L67" title="All 2 branches covered.">       for (MailBox mailbox : toBox) {</span>
-<span class="fc" id="L68">        mailbox.getTrays().addInbox(email);</span>
-<span class="fc" id="L69">        }</span>
+<span class="fc" id="L64">       getFromBox().getTrays().addOutbox(email);</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">       for (MailBox mailbox : toBox) {</span>
+<span class="fc" id="L66">        mailbox.getTrays().addInbox(email);</span>
+<span class="fc" id="L67">        }</span>
      
-<span class="fc" id="L71">    }</span>
+<span class="fc" id="L69">    }</span>
      
     public MailBox getFromBox() {
-<span class="fc" id="L74">        return fromBox;</span>
+<span class="fc" id="L72">        return fromBox;</span>
     }
 
     public void setFromBox(MailBox fromBox) {
         
-<span class="fc" id="L79">        this.fromBox = fromBox;</span>
-<span class="fc" id="L80">        }</span>
+<span class="fc" id="L77">        this.fromBox = fromBox;</span>
+<span class="fc" id="L78">        }</span>
     
     
 
     public ArrayList&lt;MailBox&gt; getBoxes() {
-<span class="nc" id="L85">        return Boxes;</span>
+<span class="nc" id="L83">        return boxes;</span>
     }
 
     public void setBoxes(ArrayList&lt;MailBox&gt; boxes) {
-<span class="fc bfc" id="L89" title="All 2 branches covered.">        if (boxes==null) {</span>
-<span class="fc" id="L90">            throw new IllegalArgumentException(&quot;Este campo es obligatorio&quot;);</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        if (boxes==null) {</span>
+<span class="fc" id="L88">            throw new IllegalArgumentException(&quot;Este campo es obligatorio&quot;);</span>
         }else{
-<span class="fc" id="L92">        Boxes = boxes;</span>
+<span class="fc" id="L90">        this.boxes = boxes;</span>
         }
-<span class="fc" id="L94">    }</span>
+<span class="fc" id="L92">    }</span>
 
 
 
